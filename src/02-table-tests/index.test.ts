@@ -45,11 +45,8 @@ const testCases = [
 ];
 
 describe('simpleCalculator', () => {
-  testCases.forEach((testCase) => {
-    const { a, b, action, expected, message } = testCase;
-    test(message, () => {
-      const result = simpleCalculator({ a, b, action });
-      expected ? expect(result).toBe(expected) : expect(result).toBeNull();
-    });
+  test.each(testCases)('$message', ({ a, b, action, expected }) => {
+    const result = simpleCalculator({ a, b, action });
+    expected ? expect(result).toBe(expected) : expect(result).toBeNull();
   });
 });
